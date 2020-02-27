@@ -5,6 +5,7 @@ def fill_missing():
     return None
 
 
+
 def select_feature():
 
     """
@@ -12,3 +13,14 @@ def select_feature():
     """
 
     return 0
+
+  
+def categorize(df):
+    """
+    Categorizes each column in a dataframe as 'numeric', 
+    'categorical' or 'text' and returns a dictionary
+    with a list of column names for each category.
+    """
+    pass
+
+
