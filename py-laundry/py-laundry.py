@@ -4,6 +4,17 @@ def fill_missing():
     """
     return None
 
+
+
+def select_feature():
+
+    """
+    Select Important Features from the input data
+    """
+
+    return 0
+
+  
 def categorize(df):
     """
     Categorizes each column in a dataframe as 'numeric', 
@@ -11,4 +22,5 @@ def categorize(df):
     with a list of column names for each category.
     """
     pass
+
 
