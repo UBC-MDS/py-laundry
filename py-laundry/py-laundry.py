@@ -6,6 +6,13 @@ def fill_missing():
 
 
 
+def transform_columns():
+    """
+    Transforming columns
+    """
+    
+
+
 def select_feature():
 
     """
