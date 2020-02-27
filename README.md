@@ -23,8 +23,11 @@ pip install -i https://test.pypi.org/simple/ py-laundry
 
 ### Dependencies
 
-- TODO
-
+- Python 3.7.3 and Python packages:
+  - pandas==0.24.2  
+  - numpy==1.16.4  
+  - sklearn==0.22    
+  
 ### Usage
 
 - TODO
