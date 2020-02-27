@@ -1,4 +1,9 @@
-import pandas as pd 
+def fill_missing():
+    """
+    Fill missing values in the dataframe based on user input.
+    """
+    return None
+
 def categorize(df):
     """
     Categorizes each column in a dataframe as 'numeric', 
@@ -6,3 +11,4 @@ def categorize(df):
     with a list of column names for each category.
     """
     pass
+
