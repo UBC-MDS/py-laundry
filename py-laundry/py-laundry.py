@@ -6,11 +6,30 @@ def fill_missing():
 
 
 
-def transform_columns():
+def transform_columns(X, cat_list, num_list, cat_trans, num_trans):
     """
-    Transforming columns
-    """
+    Transforms categorical and numerical features based on user  inputs
+
+    Arguments
+    ---------     
+    X -- numpy.ndarray        
+        Features array
+    cat_list -- list
+        List of categorical features
+    num_list -- list 
+        List of numerical features
+    cat_trans -- list
+        transformation method for categorical features(default - 'ohe')
+    num_trans -- list
+        transformation method for numerical features(default - 'StandardScaler')
     
+    
+    Returns
+    -------
+    X_trasnformed -- numpy.ndarray
+        array of transformed features
+    
+    """
 
 
 def select_feature(X,y,mode="regression",n_features=2):
