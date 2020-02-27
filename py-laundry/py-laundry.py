@@ -13,10 +13,28 @@ def transform_columns():
     
 
 
-def select_feature():
+def select_feature(X,y,mode="regression",n_features=2):
 
     """
     Select Important Features from the input data
+
+    Arguments
+    ---------     
+    X -- numpy.ndarray        
+        The X part of the data set
+    y -- numpy.ndarray
+        The y part of the data set
+    n_features -- int
+    
+    Keyword arguments 
+    -----------------
+    mode -- str 
+        The mode for calculation (default = 'regression') 
+    
+    Returns
+    -------
+    features -- list
+    
     """
 
     return 0
