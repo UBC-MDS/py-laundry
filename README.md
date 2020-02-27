@@ -5,8 +5,6 @@ The `pyLaundry` package performs many standard preprocessing techniques for Pand
 
 [![Documentation Status](https://readthedocs.org/projects/py-laundry/badge/?version=latest)](https://py-laundry.readthedocs.io/en/latest/?badge=latest)
 
-Python pacssing of dataframes used in machine learning and statistical analysis. 
-
 ### Installation:
 ```
 pip install -i https://test.pypi.org/simple/ py-laundry
@@ -21,6 +19,13 @@ pip install -i https://test.pypi.org/simple/ py-laundry
 
 - `feature_selector`: This function takes in a dataframe which has X and y columns specified, a target task (Regression or Classification), and a maximum number of features to select. The function returns the most important features for the target task. 
 
+### pyLaundry in the Python ecosystem
+- [sklearn.Pipeline](https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html) offers similar functionality for the fill_missing and transform_columns functions, where similar functions can be wrapped in a Pipeline and carried out sequentially.
+
+- There are many feature selection packages and functions, for instance [sklearn.feature_selection](https://scikit-learn.org/stable/modules/feature_selection.html), which carry out similar functionality to our `feature_selector` function
+
+- As far as we know, there are no similar packages for Categorizing Columns. `pyLaundry` is the first package we are aware of to abstract away the full dataframe pre-processing workflow with a unified and simple API.
+
 ### Dependencies
 
 - Python 3.7.3 and Python packages:
@@ -34,13 +39,6 @@ pip install -i https://test.pypi.org/simple/ py-laundry
 
 ### Documentation
 The official documentation is hosted on Read the Docs: <https://py-laundry.readthedocs.io/en/latest/>
-
-### pyLaundry in the Python ecosystem
-- [sklearn.Pipeline](https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html) offers similar functionality for the fill_missing and transform_columns functions, where similar functions can be wrapped in a Pipeline and carried out sequentially.
-
-- There are many feature selection packages and functions, for instance [sklearn.feature_selection](https://scikit-learn.org/stable/modules/feature_selection.html), which carry out similar functionality to our `feature_selector` function
-
-- As far as we know, there are no similar packages for Categorizing Columns. `pyLaundry` is the first package we are aware of to abstract away the full dataframe pre-processing workflow with a unified and simple API.
 
 ### Credits
 This package was created with Cookiecutter and the UBC-MDS/cookiecutter-ubc-mds project template, modified from the [pyOpenSci/cookiecutter-pyopensci](https://github.com/pyOpenSci/cookiecutter-pyopensci) project template and the [audreyr/cookiecutter-pypackage](https://github.com/audreyr/cookiecutter-pypackage).
