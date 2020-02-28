@@ -40,7 +40,7 @@ def transform_columns(X, cat_list, num_list, cat_trans, num_trans):
     
     Returns
     -------
-    X_trasnformed -- numpy.ndarray
+    X_transformed -- numpy.ndarray
         array of transformed features
     
     """
@@ -79,14 +79,14 @@ def categorize(df):
     Categorizes each column in a dataframe as 'numeric', 
     'categorical' or 'text'.
 
-    Parameters
+    Arguments
     ----------
-    df : pandas.core.frame.DataFrame
+    df --  pandas.core.frame.DataFrame
         A pandas dataframe
 
     Returns
     -------
-    dict
+    column_categories -- dict
         A dictionary with keys = 'numeric','categorical','text', 
 	and values = a list of columns that fall into
 	each respective category
