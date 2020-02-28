@@ -47,15 +47,15 @@ def transform_columns(X, cat_list, num_list, cat_trans, num_trans):
     pass
 
 
-def select_feature(X,y,mode="regression",n_features=2):
+def select_feature(df,y,mode="regression",n_features=2):
 
     """
     Select Important Features from the input data
 
     Arguments
     ---------     
-    X -- numpy.ndarray        
-        The X part of the data set
+    df -- dataframe        
+        pandas
     y -- numpy.ndarray
         The y part of the data set
     n_features -- int
