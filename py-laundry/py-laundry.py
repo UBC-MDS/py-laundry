@@ -20,18 +20,18 @@ def fill_missing(df, column_dict, num_trans, cat_trans):
 
 
 
-def transform_columns(X, cat_list, num_list, cat_trans, num_trans):
+def transform_columns(X, column_dict, cat_trans, num_trans):
     """
-    Transforms categorical and numerical features based on user  inputs
+    Transforms categorical and numerical features based on user input.
 
     Arguments
     ---------     
-    X -- numpy.ndarray        
-        Features array
-    cat_list -- list
-        List of categorical features
-    num_list -- list 
-        List of numerical features
+    df -- pandas.core.frame.DataFrame       
+        A pandas dataframe
+    column_dict: dictionary
+        A dictionary with keys = 'numeric','categorical','text', 
+	and values = a list of columns that fall into
+	each respective category.
     cat_trans -- list
         transformation method for categorical features(default - 'ohe')
     num_trans -- list
@@ -40,8 +40,8 @@ def transform_columns(X, cat_list, num_list, cat_trans, num_trans):
     
     Returns
     -------
-    X_transformed -- numpy.ndarray
-        array of transformed features
+    df_transformed -- pandas.core.frame.DataFrame  
+        A pandas dataframe
     
     """
     pass
