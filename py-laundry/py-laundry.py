@@ -52,7 +52,7 @@ def transform_columns(X, column_dict, cat_trans, num_trans):
     pass
 
 
-def select_feature(df,y,mode="regression",n_features=2):
+def select_features(df,y,mode="regression",n_features=2):
 
     """
     Select Important Features from the input data
@@ -107,6 +107,7 @@ def categorize(df):
     {'numeric':['temp'], 'categorical':['days'], 'text':['weather']}
     
     """
-    pass
+    
+    
 
 
