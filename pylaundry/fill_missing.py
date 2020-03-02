@@ -21,4 +21,4 @@ def fill_missing(df, column_dict, num_trans, cat_trans):
         A pandas dataframe
     
     """
-    pass
+    return 5

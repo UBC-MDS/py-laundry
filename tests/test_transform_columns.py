@@ -1,1 +1,1 @@
-from py-laundry import transform_columns
+from pylaundry import transform_columns

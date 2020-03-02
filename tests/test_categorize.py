@@ -1,1 +1,1 @@
-from py-laundry import categorize
+from pylaundry import categorize
