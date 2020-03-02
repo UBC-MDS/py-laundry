@@ -1,1 +1,1 @@
-from py-laundry import select_features
+from pylaundry import select_features
