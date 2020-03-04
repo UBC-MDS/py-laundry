@@ -1,5 +1,5 @@
 import pandas as pd
-from sklearn.preprocessing import OneHotEncoder, StandardScaler, MinMaxScaler, LabelEncoder
+from sklearn.preprocessing import OneHotEncoder, StandardScaler, MinMaxScaler, OrdinalEncoder
 from sklearn.compose import ColumnTransformer
 import numpy as np 
 
@@ -66,23 +66,23 @@ def transform_columns(X_train, X_test,  column_dict, cat_trans = "onehot_encodin
             
             preprocessor = ColumnTransformer(transformers= [
                     ("stand_scaler", StandardScaler(), numeric),
-                    ("ohe", LabelEncoder(), categorical)], sparse_threshold =0)
+                    ("ordinal", OrdinalEncoder(), categorical)], sparse_threshold =0)
 
             
         elif num_trans == "minmax_scaling":
             preprocessor = ColumnTransformer(transformers= [
                     ("minmax_scaler", MinMaxScaler(), numeric),
-                    ("ohe", LabelEncoder(), categorical)], sparse_threshold =0)
+                    ("ordinal", OrdinalEncoder(), categorical)], sparse_threshold =0)
         
         # ## Applying transformations to training data set
         X_train = pd.DataFrame(preprocessor.fit_transform(X_train), 
                                    index = X_train.index,
-                                   columns = X_train.columns)
+                                   columns = numeric +categorical)
             
         #applying transformations to test set
         X_test = pd.DataFrame(preprocessor.transform(X_test),
                               index = X_test.index,
-                              columns= X_test.columns)
+                              columns= X_train.columns)
     
     transformed_dict = {'X_train' : X_train,
                         'X_test' : X_test}
