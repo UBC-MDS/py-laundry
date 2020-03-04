@@ -88,6 +88,39 @@ def transform_columns(X_train, X_test,  column_dict, cat_trans = "onehot_encodin
                         'X_test' : X_test}
     
     return transformed_dict
+
+
+# test dataset
+    
+# dataframes for testing
+employee_name = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
+manager = ["M1", "M2", "M3", "M1", "M2", "M3", "M1", "M2", "M3", "M1"]
+age = [23, 56,34,40, 34,56, 45, 65, 54,43]
+sex = ['M', 'F','M', 'F','M', 'F','M', 'F', 'M', 'F']
+daily_wage = [100,200, 100, 60, 80, 140, 320,60, 90, 90]
+x_train = {'employee_name':employee_name,
+           'manager': manager,
+           'age': age,
+           'sex':sex,
+           'daily_wage' :daily_wage}
+test_train = pd.DataFrame(x_train)
+
+
+employee_name =["K", "L", "M", "N", "O", "P"]
+manager = ["M1", "M2", "M3", "M1", "M2", "M3"]
+age = [23, 56,34,40, 34,56]
+sex = ['M', 'F','M', 'F','M', 'F']
+daily_wage = [ 80, 140, 320,60, 90, 90]
+x_test = {'employee_name':employee_name,
+           'manager': manager,
+           'age': age,
+           'sex':sex,
+           'daily_wage' :daily_wage}
+test_test = pd.DataFrame(x_test)
+
+column_dict = {'numeric': ['age', 'daily_wage'],
+               'categorical': ['sex', 'manager']}
+
         
     
         
