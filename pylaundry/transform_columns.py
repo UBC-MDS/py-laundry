@@ -1,11 +1,13 @@
-def transform_columns(X, column_dict, cat_trans, num_trans):
+def transform_columns(x_train, x_test,  column_dict, cat_trans = "onehot_encoding", num_trans = "standard_scaling"):
     """
     Transforms categorical and numerical features based on user input.
 
     Arguments
     ---------     
-    df -- pandas.core.frame.DataFrame       
-        A pandas dataframe
+    x_train -- pandas.core.frame.DataFrame       
+        A pandas dataframe for training set
+    x_test -- pandas.core.frame.DataFrame       
+        A pandas dataframe for training set
     column_dict: dictionary
         A dictionary with keys = 'numeric','categorical','text', 
 	and values = a list of columns that fall into
@@ -22,4 +24,4 @@ def transform_columns(X, column_dict, cat_trans, num_trans):
         A pandas dataframe
     
     """
-    pass
+    
