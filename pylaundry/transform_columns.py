@@ -83,6 +83,11 @@ def transform_columns(X_train, X_test,  column_dict, cat_trans = "onehot_encodin
         X_test = pd.DataFrame(preprocessor.transform(X_test),
                               index = X_test.index,
                               columns= X_test.columns)
+    
+    transformed_dict = {'X_train' : X_train,
+                        'X_test' : X_test}
+    
+    return transformed_dict
         
     
         
