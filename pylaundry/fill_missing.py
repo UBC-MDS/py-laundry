@@ -9,10 +9,12 @@ def fill_missing(train_df, test_df, column_dict, num_trans, cat_trans):
 
     Arguments
     ---------     
-    df : pandas.core.frame.DataFrame
-        A pandas dataframe
+    train_df : pandas.core.frame.DataFrame
+        The training set, will be used for calculating and inputing values
+    test_df: pandas.core.frame.DataFrame
+        The test set, will be used for inputing values only.
     column_dict: dictionary
-        A dictionary with keys = 'numeric','categorical','text', 
+        A dictionary with keys = 'numeric','categorical',
         and values = a list of columns that fall into
         each respective category.
     num_trans -- string
@@ -26,10 +28,7 @@ def fill_missing(train_df, test_df, column_dict, num_trans, cat_trans):
         A pandas dataframe
     
     """
-    
-    # TODO
-    # Missing assert on column keys are "numeric" and "categorical"
-    
+        
     # Check input types are as specified
     assert isinstance(train_df, pd.DataFrame), "train_df must be a Pandas DF"
     assert isinstance(test_df, pd.DataFrame), "test_df must be a Pandas DF"
@@ -39,6 +38,11 @@ def fill_missing(train_df, test_df, column_dict, num_trans, cat_trans):
     
     # Check train set and test set columns are the same
     assert np.array_equal(train_df.columns, test_df.columns), "train_df and test_df must have the same columns"
+    
+    # Check dictionary keys are numeric and categorical
+    for key in column_dict.keys():
+        assert key == 'numeric' or key == 'categorical', \
+        "column_dict keys can be only 'numeric' and 'categorical'"
     
     # Check all the columns listed in dictionary are in the df
     for keys, values in column_dict.items():
