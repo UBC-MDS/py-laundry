@@ -34,27 +34,25 @@ def transform_columns(X_train, X_test,  column_dict, cat_trans = "onehot_encodin
     X_train = X_train
     X_test = X_test
     
-    ## checking for user inputs
+    ## checking user inputs
     
-     # Check input parameters from user
+     # assertions for test and train set inputs
     assert isinstance(X_train, pd.DataFrame), "X_train should be a DataFrame"
     assert isinstance(X_test, pd.DataFrame), "X_test should be a data frame"
     
+    # assertions for dictionary input
     assert isinstance(column_dict, dict), "column_dict should be a python dictionary"
     assert len(column_dict)==2, "column_dict should have 2 keys - 'numeric' and 'categorical'" 
     assert [key in [ 'categorical', 'numeric'] for key in column_dict.keys() ], "column_dict keys can be only 'numeric' and 'categorical'"
     
     
-    
+    # assertions for transformation inputs
     assert isinstance(num_trans, str), "num_trans should be a string"
     assert isinstance(cat_trans, str), "cat_trans should be a string"
     assert num_trans == "standard_scaling" or num_trans == "minmax_scaling","transformation method for numeric columns can only be 'minmax_scaling' or 'standard_scaling'"
     assert cat_trans == "onehot_encoding" or cat_trans == "label_encoding","transformation method for categorical columns can only be 'label_encoding' or 'onehot_encoding'"
     
 
-    
-    
-    
     numeric = column_dict['numeric']
     categorical = column_dict['categorical']
     
@@ -114,34 +112,7 @@ def transform_columns(X_train, X_test,  column_dict, cat_trans = "onehot_encodin
 
 # test dataset will remove this soon
     
-# dataframes for testing
-employee_name = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
-manager = ["M1", "M2", "M3", "M1", "M2", "M3", "M1", "M2", "M3", "M1"]
-age = [23, 56,34,40, 34,56, 45, 65, 54,43]
-sex = ['M', 'F','M', 'F','M', 'F','M', 'F', 'M', 'F']
-daily_wage = [100,200, 100, 60, 80, 140, 320,60, 90, 90]
-x_train = {'employee_name':employee_name,
-           'manager': manager,
-           'age': age,
-           'sex':sex,
-           'daily_wage' :daily_wage}
-test_train = pd.DataFrame(x_train)
 
-
-employee_name =["K", "L", "M", "N", "O", "P"]
-manager = ["M1", "M2", "M3", "M1", "M2", "M3"]
-age = [23, 56,34,40, 34,56]
-sex = ['M', 'F','M', 'F','M', 'F']
-daily_wage = [ 80, 140, 320,60, 90, 90]
-x_test = {'employee_name':employee_name,
-           'manager': manager,
-           'age': age,
-           'sex':sex,
-           'daily_wage' :daily_wage}
-test_test = pd.DataFrame(x_test)
-
-column_dict = {'numeric': ['age', 'daily_wage'],
-               'categorical': ['sex', 'manager']}
 
         
     
