@@ -33,6 +33,28 @@ def transform_columns(X_train, X_test,  column_dict, cat_trans = "onehot_encodin
     ## code to retain name convention for function arguments
     X_train = X_train
     X_test = X_test
+    
+    ## checking for user inputs
+    
+     # Check input parameters from user
+    assert isinstance(X_train, pd.DataFrame), "X_train should be a DataFrame"
+    assert isinstance(X_test, pd.DataFrame), "X_test should be a data frame"
+    
+    assert isinstance(column_dict, dict), "column_dict should be a python dictionary"
+    assert len(column_dict)==2, "column_dict should have 2 keys - 'numeric' and 'categorical'" 
+    assert [key in [ 'categorical', 'numeric'] for key in column_dict.keys() ], "column_dict keys can be only 'numeric' and 'categorical'"
+    
+    
+    
+    assert isinstance(num_trans, str), "num_trans should be a string"
+    assert isinstance(cat_trans, str), "cat_trans should be a string"
+    assert num_trans == "standard_scaling" or num_trans == "minmax_scaling","transformation method for numeric columns can only be 'minmax_scaling' or 'standard_scaling'"
+    assert cat_trans == "onehot_encoding" or cat_trans == "label_encoding","transformation method for categorical columns can only be 'label_encoding' or 'onehot_encoding'"
+    
+
+    
+    
+    
     numeric = column_dict['numeric']
     categorical = column_dict['categorical']
     
@@ -90,7 +112,7 @@ def transform_columns(X_train, X_test,  column_dict, cat_trans = "onehot_encodin
     return transformed_dict
 
 
-# test dataset
+# test dataset will remove this soon
     
 # dataframes for testing
 employee_name = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
