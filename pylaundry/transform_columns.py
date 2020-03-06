@@ -12,7 +12,7 @@ def transform_columns(X_train, X_test,  column_dict, cat_trans = "onehot_encodin
     X_train -- pandas.core.frame.DataFrame       
         A pandas dataframe for training set
     X_test -- pandas.core.frame.DataFrame       
-        A pandas dataframe for training set
+        A pandas dataframe for test set
     column_dict: dictionary
         A dictionary with keys = 'numeric','categorical','text', 
 	and values = a list of columns that fall into
