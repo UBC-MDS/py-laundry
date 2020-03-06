@@ -17,7 +17,7 @@ def fill_missing(train_df, test_df, column_dict, num_trans, cat_trans):
         A dictionary with keys = 'numeric','categorical',
         and values = a list of columns that fall into
         each respective category.
-    num_trans -- string
+    num_trans -- string(default -"mean")
         imputation method for numeric features, options are "mean", "median"
     cat_trans -- list
         imputation method for categorical features, options are "mode"
