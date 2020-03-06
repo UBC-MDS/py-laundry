@@ -31,8 +31,6 @@ def transform_columns(X_train, X_test,  column_dict, cat_trans = "onehot_encodin
     """
     
     ## code to retain name convention for function arguments
-    X_train = X_train
-    X_test = X_test
     
     ## checking user inputs
     
