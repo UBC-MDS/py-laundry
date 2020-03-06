@@ -9,7 +9,7 @@ def fill_missing(train_df, test_df, column_dict, num_trans, cat_trans):
 
     Arguments
     ---------     
-    train_df : pandas.core.frame.DataFrame
+    X_train: pandas.core.frame.DataFrame
         The training set, will be used for calculating and inputing values
     test_df: pandas.core.frame.DataFrame
         The test set, will be used for inputing values only.
