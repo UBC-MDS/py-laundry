@@ -50,7 +50,8 @@ def transform_columns(X_train, X_test,  column_dict, cat_trans = "onehot_encodin
     assert num_trans == "standard_scaling" or num_trans == "minmax_scaling","transformation method for numeric columns can only be 'minmax_scaling' or 'standard_scaling'"
     assert cat_trans == "onehot_encoding" or cat_trans == "label_encoding","transformation method for categorical columns can only be 'label_encoding' or 'onehot_encoding'"
     
-
+    # Check train set and test set columns are the same
+    assert np.array_equal(train_df.columns, test_df.columns), "train_df and test_df must have the same columns"
     numeric = column_dict['numeric']
     categorical = column_dict['categorical']
     
