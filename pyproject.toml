@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "py-laundry"
+name = "pylaundry"
 version = "0.1.0"
 description = "Python package for basic preprocessing of dataframes used in machine learning and statistical analysis."
 authors = ["Your Name <you@example.com>"]
@@ -13,7 +13,6 @@ sklearn = "^0.0.0"
 
 [tool.poetry.dev-dependencies]
 pytest-cov = "^2.8.1"
-
 
 [build-system]
 requires = ["poetry>=0.12"]
