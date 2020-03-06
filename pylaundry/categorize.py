@@ -47,7 +47,7 @@ def categorize(df, max_cat = 10):
     {'numeric':['temp'], 'categorical':['days']}
     
     """
-    # Check for valid parameters
+    # Check for invalid parameters
     assert isinstance(df,pd.DataFrame), "df must be a Pandas DataFrame. Please see documentation."
     assert isinstance(max_cat, int), "max_cat must be an integer. Please see documentation."
     assert max_cat > 0, "max_cat must be a positive integer. Please see documentation."
