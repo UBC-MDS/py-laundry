@@ -43,7 +43,6 @@ def select_features(df,y,mode="regression",n_features=2):
         col = df.columns
         
         if mode == "regression":
-            #print (df)
             lr = LinearRegression()
             rfe = RFE(estimator = lr, n_features_to_select = n_features)
             rfe.fit(df, y)
