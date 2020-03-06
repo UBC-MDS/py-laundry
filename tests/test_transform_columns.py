@@ -52,6 +52,12 @@ def test_wrong_train_test_set():
         
     except AssertionError:
         pass 
+    
+    try: 
+        transform_columns(X_train ,X_test[['manager']], column_dict)
+        
+    except AssertionError:
+        pass 
 
 
 # Test cases for bad column_dict inputs
@@ -76,6 +82,14 @@ def test_wrong_column_dict():
     try: 
         transform_columns(X_train, X_test, column_dict = {'numeric' : ['A', 'B'],
                                                            'mix_cat': ['C', 'D']})
+        
+    except AssertionError:
+        pass 
+    
+    # checking if dictionary has right column names for each key
+    try: 
+        transform_columns(X_train, X_test, column_dict = {'numeric' : ['A', 'B'],
+                                                           'categorical': ['C', 'D']})
         
     except AssertionError:
         pass 
@@ -115,10 +129,51 @@ def test_wrong_num_trans():
         
     except AssertionError:
         pass 
-
-
-
     
+
+# testing onehot_encoding
+def test_onehot_encoding():
+    
+    # number of columns
+    assert len(transform_columns(X_train, Y_train, column_dict)['X_train'].columns) >= len(X_train),\
+    "Number of columns in transformed X_train must be greater than or equal to input X_train after ohe"
+    assert len(transform_columns(X_train, Y_train, column_dict)['X_test'].columns) >= len(X_test),\
+    "Number of columns in transformed X_test must be greater than or equal to input X_train after ohe"
+    
+    assert np.array_equal((transform_columns(X_train, Y_train, column_dict)['X_train'].columns),
+                          (transform_columns(X_train, Y_train, column_dict)['X_test'].columns)),\
+                          "Transformed X_train and X_test must have same column names after ohe"
+    
+def test_label_encoding():
+    
+    # number of columns
+    assert len(transform_columns(X_train, Y_train, column_dict, cat_trans ="label_encoding" )['X_train'].columns) == len(X_train),\
+    "Number of columns in transformed X_train must be equal to input X_train after label encoding"
+    assert len(transform_columns(X_train, Y_train, column_dict, cat_trans ="label_encoding" )['X_test'].columns) == len(X_test),\
+    "Number of columns in transformed X_test must be equal to input X_train"
+    
+    assert np.array_equal((transform_columns(X_train, Y_train, column_dict, cat_trans ="label_encoding" )['X_train'].columns),
+                          (transform_columns(X_train, Y_train, column_dict, cat_trans ="label_encoding" )['X_test'].columns)),\
+                          "Transformed X_train and X_test must have same column names after label encoding"
+                          
+
+
+def test_standard_minmax_scaling():
+    
+    assert abs(np.mean(transform_columns(X_train,X_test, column_dict)['X_train'][column_dict['numeric'][0]])) < 10**(-3),\
+    "X_train's numeric columns after standard scaling must have mean close to 0"
+    
+    assert np.max(transform_columns(X_train,X_test, column_dict)['X_train'][column_dict['numeric'][0]]) == 1,\
+    "X_train's numeric columns after minmax scaling must have maximum value of 1"
+    
+        
+    assert np.min(transform_columns(X_train,X_test, column_dict)['X_train'][column_dict['numeric'][0]]) == 1,\
+    "X_train's numeric columns after minmax scaling must have minimum value of 0"
+    
+
+   
+    
+
 def test_output():
     output_dict = transform_columns(X_train, X_test, column_dict)
     
@@ -134,10 +189,12 @@ def test_output():
    
     
     # correct dictionary keys
+    for key in output_dict.keys():
+        assert key in ['X_train', 'X_test'], "output_dict keys can be only 'X_test' and 'X_train'"
+    
     
     # to be contibued
     
 
-def test_transformations():
-    pass 
+
 

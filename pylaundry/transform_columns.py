@@ -40,7 +40,9 @@ def transform_columns(X_train, X_test,  column_dict, cat_trans = "onehot_encodin
     # assertions for dictionary input
     assert isinstance(column_dict, dict), "column_dict should be a python dictionary"
     assert len(column_dict)==2, "column_dict should have 2 keys - 'numeric' and 'categorical'" 
-    assert [key in [ 'categorical', 'numeric'] for key in column_dict.keys() ], "column_dict keys can be only 'numeric' and 'categorical'"
+    
+    for key in column_dict.keys():
+        assert key in ['numeric', 'categorical'], "column_dict keys can be only 'numeric' and 'categorical'"
     
     
     # assertions for transformation inputs
@@ -53,8 +55,11 @@ def transform_columns(X_train, X_test,  column_dict, cat_trans = "onehot_encodin
     assert np.array_equal(X_train.columns, X_test.columns), "X_train and X_test must have the same columns"
     
     for key, values in column_dict.items():
-        assert [column in X_train.columns for column in values], "columns in dictionary must be in dataframe"
+        for column in values:
+            assert column in X_train.columns , "columns in dictionary must be in dataframe"
     
+    
+   
     numeric = column_dict['numeric']
     categorical = column_dict['categorical']
     
