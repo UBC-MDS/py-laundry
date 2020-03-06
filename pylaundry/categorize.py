@@ -1,6 +1,5 @@
 import pandas as pd
 import numpy as np
-import datetime
 
 def categorize(df, max_cat = 10):
     """
@@ -75,4 +74,3 @@ def categorize(df, max_cat = 10):
     numeric = list(numeric_set)
 
     return {'numeric':numeric, 'categorical':categorical}
-
