@@ -32,6 +32,7 @@ def generate_data_regression_one():
 
 
 
+
 @pytest.fixture
 def generate_data_classification():
    x1 = np.random.randint(low = 0, high = 200, size = 1000)
