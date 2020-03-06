@@ -36,7 +36,7 @@ def select_features(df,y,mode="regression",n_features=2):
         raise WrongDataType("Input Data is not dataframe")
 
     elif np.array([object()]).dtype in list(df.dtypes):
-        raise WrongData("String Column Present in the data. Apply transform_column function to fix")
+        raise WrongData("String Column Present in the data. Apply transform column function to fix")
         
     else:
         
