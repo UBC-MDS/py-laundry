@@ -43,6 +43,16 @@ def generate_data_classification():
    return df
 
 @pytest.fixture
+def generate_data_classification_multi():
+   x1 = np.random.randint(low = 0, high = 200, size = 1000)
+   x2 = np.random.randint(low = 100, high = 600, size = 1000)
+   x3 = np.random.randint(low = -100, high = 300, size = 1000)
+   df = pd.DataFrame({"x1":x1, "x2":x2, "x3":x3})
+   df['y'] = df.apply(lambda x: 1 if (x['x1'] > 150 and x['x2'] > 300) else 0,axis=1)
+   
+   return df
+
+@pytest.fixture
 def generate_wrong_data():
     x1 = np.random.randint(low = 0, high = 200, size = 1000)
     x2 = np.random.randint(low = 100, high = 600, size = 1000)
@@ -79,6 +89,13 @@ def test_classification(generate_data_classification):
     y = df['y'].values
     df = df[['x1','x2','x3']]
     assert select_features.select_features(df,y,mode = "classification",n_features=1) == ["x1"]
+
+def test_classification_multi(generate_data_classification_multi):
+    df = generate_data_classification_multi
+    y = df['y'].values
+    df = df[['x1','x2','x3']]
+    assert select_features.select_features(df,y,mode = "classification",n_features=2) == ["x1", "x2"]
+
 
 def test_dataframe(generate_wrong_data):
     df = generate_wrong_data
