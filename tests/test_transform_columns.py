@@ -1,3 +1,6 @@
+# test suite for trasnform_columns function
+
+
 import pytest
 import pandas as pd
 import numpy as np
@@ -41,6 +44,15 @@ column_dict = {'numeric': ['age', 'daily_wage'],
 # functon to test wrong X_train/X_test argument
 
 def test_wrong_train_test_set():
+    """
+    Tests inputs for arguments X_train and X_test
+     
+    
+    Arguments
+    --------
+    N/A
+    
+    """
     try: 
         transform_columns(X_test= X_test, column_dict= column_dict, X_train = 5)
         
@@ -62,7 +74,15 @@ def test_wrong_train_test_set():
 
 # Test cases for bad column_dict inputs
 def test_wrong_column_dict():
-    # bad datatype
+    """
+    Tests inputs for argument column_dict
+    
+    Arguments
+    --------
+    N/A
+    
+    """
+
     try: 
         transform_columns(X_train, X_test, column_dict = ['numeric', 'categorical'])
         
@@ -96,6 +116,14 @@ def test_wrong_column_dict():
 
 # test cases for bad num_trans inputs
 def test_wrong_num_trans():
+    """
+    Tests inputs for argument num_trans
+    
+    Arguments
+    --------
+    N/A
+    
+    """
     
     # bad input type
     try: 
@@ -114,7 +142,15 @@ def test_wrong_num_trans():
     
 
 # test cases for bad cat_trans inputs
-def test_wrong_num_trans():
+def test_wrong_cat_trans():
+    """
+    Tests inputs for argument cat_trans
+    
+    Arguments
+    --------
+    N/A
+    
+    """
     
     # bad input type
     try: 
@@ -134,6 +170,15 @@ def test_wrong_num_trans():
 # testing onehot_encoding
 def test_onehot_encoding():
     
+    """
+    Tests if transform_columns does onehot_encoding correctly
+    
+    Arguments
+    --------
+    N/A
+    
+    """
+    
     # number of columns
     assert len(transform_columns(X_train, X_test, column_dict)['X_train'].columns) >= X_train.shape[1],\
     "Number of columns in transformed X_train must be greater than or equal to input X_train after ohe"
@@ -145,6 +190,13 @@ def test_onehot_encoding():
                           "Transformed X_train and X_test must have same column names after ohe"
     
 def test_label_encoding():
+    """
+    Tests if transform_columns does label_encoding correctly
+    
+    Arguments
+    --------
+    N/A
+    """
     
     # number of columns
     assert len(transform_columns(X_train, X_test, column_dict, cat_trans ="label_encoding" )['X_train'].columns) ==  X_train.shape[1],\
@@ -159,6 +211,13 @@ def test_label_encoding():
 
 
 def test_standard_minmax_scaling():
+    """
+    Tests if transform_columns does minmax_scaling and label_encoding correctly
+    
+    Arguments
+    --------
+    N/A
+    """
     
     assert abs(np.mean(transform_columns(X_train,X_test, column_dict)['X_train'][column_dict['numeric'][0]])) < 10**(-3),\
     "X_train's numeric columns after standard scaling must have mean close to 0"
@@ -175,6 +234,14 @@ def test_standard_minmax_scaling():
     
 
 def test_output():
+    
+    """
+    Tests if transform_columns returns output dictionary correctly
+    
+    Arguments
+    --------
+    N/A
+    """
     output_dict = transform_columns(X_train, X_test, column_dict)
     
     # Check output length
