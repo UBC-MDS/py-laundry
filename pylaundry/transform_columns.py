@@ -30,7 +30,6 @@ def transform_columns(X_train, X_test,  column_dict, cat_trans = "onehot_encodin
     
     """
     
-    ## code to retain name convention for function arguments
     
     ## checking user inputs
     
@@ -51,7 +50,11 @@ def transform_columns(X_train, X_test,  column_dict, cat_trans = "onehot_encodin
     assert cat_trans == "onehot_encoding" or cat_trans == "label_encoding","transformation method for categorical columns can only be 'label_encoding' or 'onehot_encoding'"
     
     # Check train set and test set columns are the same
-    assert np.array_equal(train_df.columns, test_df.columns), "train_df and test_df must have the same columns"
+    assert np.array_equal(X_train.columns, X_test.columns), "X_train and X_test must have the same columns"
+    
+    for key, values in column_dict.items():
+        assert [column in X_train.columns for column in values], "columns in dictionary must be in dataframe"
+    
     numeric = column_dict['numeric']
     categorical = column_dict['categorical']
     
