@@ -31,7 +31,7 @@ def categorize(df, max_cat = 10):
 
     Returns
     -------
-    column_categories -- dict
+    column_dict -- dict
         A dictionary with keys = 'numeric','categorical' 
 	    and values = a list of columns that fall into
 	    each respective category
