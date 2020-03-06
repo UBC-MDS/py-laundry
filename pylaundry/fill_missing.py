@@ -54,7 +54,7 @@ def fill_missing(train_df, test_df, column_dict, num_trans, cat_trans):
         "numerical imputation method can only be mean or median"
     
     # Check that categorical imputation method is the only option
-    assert cat_trans == "mode"
+    assert cat_trans == "mode", "cat_trans can only take 'mode' as argument value"
     
     # Imputation methods for numerical transforms
     for column in column_dict['numeric']:
