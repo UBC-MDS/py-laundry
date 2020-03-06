@@ -36,7 +36,7 @@ def transform_columns(X_train, X_test,  column_dict, cat_trans = "onehot_encodin
     
      # assertions for test and train set inputs
     assert isinstance(X_train, pd.DataFrame), "X_train should be a DataFrame"
-    assert isinstance(X_test, pd.DataFrame), "X_test should be a data frame"
+    assert isinstance(X_test, pd.DataFrame), "X_test should be a DataFrame"
     
     # assertions for dictionary input
     assert isinstance(column_dict, dict), "column_dict should be a python dictionary"
