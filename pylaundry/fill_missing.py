@@ -56,6 +56,10 @@ def fill_missing(X_train, X_test, column_dict, num_imp, cat_imp):
     
     # Check that categorical imputation method is the only option
     assert cat_imp == "mode", "cat_imp can only take 'mode' as argument value"
+
+    # Check all columns contain numeric columns
+    assert X_train.select_dtypes(include=["float", 'int']).shape[1] == X_train.shape[1], \
+        "column values must be all numeric, must encode categorical variables as integers"
     
     # Imputation methods for numerical transforms
     for column in column_dict['numeric']:
