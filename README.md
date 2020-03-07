@@ -174,8 +174,7 @@ X_test = X_test_transformed[cols]
 ```
 
 ### Documentation
-The official documentation is hosted on Read the Docs: <https://py-laundry.readthedocs.io/en/latest/>
-
+The official documentation  will be hosted on `Read the Docs` when package is ready for production use.
 ### Credits
 This package was created with Cookiecutter and the UBC-MDS/cookiecutter-ubc-mds project template, modified from the [pyOpenSci/cookiecutter-pyopensci](https://github.com/pyOpenSci/cookiecutter-pyopensci) project template and the [audreyr/cookiecutter-pypackage](https://github.com/audreyr/cookiecutter-pypackage).
 
