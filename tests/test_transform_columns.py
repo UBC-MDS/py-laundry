@@ -139,6 +139,12 @@ def test_wrong_num_trans():
     except AssertionError:
         pass 
     
+    try: 
+        transform_columns(X_train, X_test, column_dict, num_trans = 'onehot_encoding', cat_trans= 'minmax_scaling')
+        
+    except AssertionError:
+        pass 
+    
     
 
 # test cases for bad cat_trans inputs
@@ -242,26 +248,64 @@ def test_output():
     --------
     N/A
     """
-    output_dict = transform_columns(X_train, X_test, column_dict)
+    output_dict = transform_columns(X_train,X_test, column_dict, num_trans= 'minmax_scaling')
     
     # Check output length
     assert len(output_dict) == 2, "Output of transform_columns() should be a dictionary of length two"
-    
-    # output type
+       # output type
     assert isinstance(output_dict, dict), "Output of transform_columns() should be a dictionary of length two"
-    
-    # check elements of output_dict
+     # check elements of output_dict
     assert isinstance(output_dict['X_train'], pd.DataFrame),"Dictionary elements must hold train and test dataframes"
     assert isinstance(output_dict['X_test'], pd.DataFrame),"Dictionary elements must hold train and test dataframes"
-   
+    # correct dictionary keys
+    for key in output_dict.keys():
+        assert key in ['X_train', 'X_test'], "output_dict keys can be only 'X_test' and 'X_train'"
     
+     
+
+    output_dict = transform_columns(X_train,X_test, column_dict)
+    
+      # Check output length
+    assert len(output_dict) == 2, "Output of transform_columns() should be a dictionary of length two"
+       # output type
+    assert isinstance(output_dict, dict), "Output of transform_columns() should be a dictionary of length two"
+     # check elements of output_dict
+    assert isinstance(output_dict['X_train'], pd.DataFrame),"Dictionary elements must hold train and test dataframes"
+    assert isinstance(output_dict['X_test'], pd.DataFrame),"Dictionary elements must hold train and test dataframes"
+    # correct dictionary keys
+    for key in output_dict.keys():
+        assert key in ['X_train', 'X_test'], "output_dict keys can be only 'X_test' and 'X_train'"
+    
+   
+   
+    output_dict = transform_columns(X_train,X_test, column_dict, num_trans= 'minmax_scaling', cat_trans = 'label_encoding')
+      # Check output length
+    assert len(output_dict) == 2, "Output of transform_columns() should be a dictionary of length two"
+       # output type
+    assert isinstance(output_dict, dict), "Output of transform_columns() should be a dictionary of length two"
+     # check elements of output_dict
+    assert isinstance(output_dict['X_train'], pd.DataFrame),"Dictionary elements must hold train and test dataframes"
+    assert isinstance(output_dict['X_test'], pd.DataFrame),"Dictionary elements must hold train and test dataframes"
     # correct dictionary keys
     for key in output_dict.keys():
         assert key in ['X_train', 'X_test'], "output_dict keys can be only 'X_test' and 'X_train'"
     
     
-    # to be contibued
+    output_dict = transform_columns(X_train,X_test, column_dict, cat_trans = 'label_encoding')
+      # Check output length
+    assert len(output_dict) == 2, "Output of transform_columns() should be a dictionary of length two"
+       # output type
+    assert isinstance(output_dict, dict), "Output of transform_columns() should be a dictionary of length two"
+     # check elements of output_dict
+    assert isinstance(output_dict['X_train'], pd.DataFrame),"Dictionary elements must hold train and test dataframes"
+    assert isinstance(output_dict['X_test'], pd.DataFrame),"Dictionary elements must hold train and test dataframes"
+    # correct dictionary keys
+    for key in output_dict.keys():
+        assert key in ['X_train', 'X_test'], "output_dict keys can be only 'X_test' and 'X_train'"
     
-
+    
+    
+    
+    
 
 
