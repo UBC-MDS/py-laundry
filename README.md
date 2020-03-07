@@ -72,51 +72,26 @@ pylaundry.categorize(df, max_cat = 5)
 from pylaundry import fill_missing
 import pandas
 
-df_train = pandas.DataFrame({'a':[1, 2, NaN, 4, 5, 1, 2, 3, 4, 5],
-                       'b':[1.2, 3.4, 3.0, 4.9, 5.3, 6.1, 8.8, 9.4, NaN, 1.2],
-                       'c':['A','B','C','D','E','F','B','H','I','NaN']})
+df_train = pandas.DataFrame({'a':[1, 2, None, 4, 4],
+                             'b':[1.2, 3.4, 3.0, 4.9, None]})
 
 df_test = pandas.DataFrame({'a':[6, NaN, 0],
-                       'b':[0.5, 9.2, NaN],
-                       'c':[NaN, 'B', 'D']})
+                           'b':[0.5, 9.2, NaN]})
 
-pylaundry.fill_missing(df_train, df_test, {'numeric':['a', 'b'], 'categorical':['c']})
->>>      a    b    c
-    0  1.0  1.2    A
-    1  2.0  3.4    B
-    2  3.0  3.0    C
-    3  4.0  4.9    D
-    4  5.0  5.3    E
-    5  1.0  6.1    F
-    6  2.0  8.8    B
-    7  3.0  9.4    H
-    8  4.0  4.8    I
-    9  5.0  1.2    B
-
-         a    b    c
-    0  6.0  0.5    B
-    1  3.0  9.2    B
-    2  0.0  4.8    C
-    
-
-pylaundry.fill_missing(df_train, df_test, {'numeric':['a', 'b'], 'categorical':['c']}, 
+pylaundry.fill_missing(df_train, df_test, {'numeric':['b'], 'categorical':['a']}, 
              num_imp = 'median')
->>>      a    b    c
-    0  1.0  1.2    A
-    1  2.0  3.4    B
-    2  3.0  3.0    C
-    3  4.0  4.9    D
-    4  5.0  5.3    E
-    5  1.0  6.1    F
-    6  2.0  8.8    B
-    7  3.0  9.4    H
-    8  4.0  4.9    I
-    9  5.0  1.2    B
+>>>      a    b    
+    0    1  1.2    
+    1    2  3.4    
+    2    4  3.0    
+    3    4  4.9    
+    4    4  3.2   
+
 
          a    b    c
-    0  6.0  0.5    B
-    1  3.0  9.2    B
-    2  0.0  4.9    C
+    0    6  0.5    B
+    1    4  9.2    B
+    2    0  3.2    C
 ```
 
 #### transform_columns()
