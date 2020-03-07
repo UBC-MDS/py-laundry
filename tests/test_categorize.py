@@ -4,6 +4,7 @@ import datetime
 import numpy as np
 import pandas as pd
 
+# Fixture to generate full test data
 @pytest.fixture
 def generate_data():
     base_date = datetime.date(year = 2020, month = 1, day = 1)
@@ -26,6 +27,7 @@ def generate_data():
     })
     return input
 
+# fixture to generate reduced test data
 @pytest.fixture
 def generate_data_no_cat():
     base_date = datetime.date(year = 2020, month = 1, day = 1)
@@ -37,6 +39,7 @@ def generate_data_no_cat():
     return input
 
 def test_output_type(generate_data):
+    """Test that output type is dictionary with 2 items. Keys = 'numeric' and 'categorical'. Values = lists."""
     output = categorize(generate_data)
     assert isinstance(output, dict), \
         "Output of categorize() should be a dictionary"
@@ -46,11 +49,13 @@ def test_output_type(generate_data):
         "Dictionary value should be list"
 
 def test_categorize_categorical(generate_data):
+    """Test that 'categorical' key of output dict is correct list"""
     output = categorize(generate_data)
     assert set(output['categorical']) == set(['cat1','cat2','cat3']), \
         "cat1, cat2 and cat3 of generate_data() should be categorized as categorical"
 
 def test_categorize_cat_dtype(generate_data):
+    """Test that column type = 'category' overrides max_cat spec"""
     df = pd.DataFrame({'col':[1.1,2.2,3.3,4.4]})
     df['col'] = df['col'].astype('category')
     output = categorize(df, max_cat = 2)
@@ -58,17 +63,20 @@ def test_categorize_cat_dtype(generate_data):
         "A column with dtype = category should override the max_cat specification"
 
 def test_categorize_float_dtype(generate_data):
+    """Test that column type = 'float' overrides max_cat spec"""
     df = pd.DataFrame({'col':[1.1,1.1,2.2,2.2]})
     output = categorize(df)
     assert output['numeric'] == ['col'], \
         "A column with dtype = float64 should override the max_cat specification"
 
 def test_categorize_numeric(generate_data):
+    """Test that 'numeric' key of output dict is correct list"""
     output = categorize(generate_data)
     assert set(output['numeric']) == set(['num1', 'num2', 'num3']), \
         "num1, num2 and num3 of generate_data() should be categorized as numeric"
 
 def test_categorize_max_cat(generate_data):
+    """Test that max_cat spec affects output correctly"""
     output = categorize(generate_data, max_cat = 3)
     assert output['categorical'] == ['cat2'], \
         "Only cat2 of generate_data() should be categorical with max_cat = 3"
@@ -76,6 +84,7 @@ def test_categorize_max_cat(generate_data):
          "Cat1 should be marked numeric with max_cat = 3"
 
 def test_categorize_bad_input(generate_data):
+    """Test that invalid inputs are caught"""
     try:
         categorize('hello!')
     except AssertionError:
@@ -94,6 +103,7 @@ def test_categorize_bad_input(generate_data):
         pass
 
 def test_categorize_no_cat(generate_data_no_cat):
+    """Test that empty outputs are generated as expected"""
     assert categorize(pd.DataFrame()) == {'numeric':[], 'categorical':[]}, \
         "Empty dataframe should return dictionary with keys but empty list values"
     assert categorize(generate_data_no_cat) == {'numeric':[], 'categorical':[]}, \
