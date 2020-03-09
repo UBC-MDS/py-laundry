@@ -5,6 +5,7 @@ import numpy as np
 import pandas as pd
 
 
+# Fixture to generate full test data
 @pytest.fixture
 def generate_data():
     base_date = datetime.date(year=2020, month=1, day=1)
@@ -29,6 +30,7 @@ def generate_data():
     return input
 
 
+# Fixture to generate reduced test data
 @pytest.fixture
 def generate_data_no_cat():
     base_date = datetime.date(year=2020, month=1, day=1)
