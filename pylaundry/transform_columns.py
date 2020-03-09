@@ -14,7 +14,7 @@ def transform_columns(X_train, X_test,  column_dict, cat_trans = "onehot_encodin
     X_test -- pandas.core.frame.DataFrame       
         A pandas dataframe for test set
     column_dict: dictionary
-        A dictionary with keys = 'numeric','categorical','text', 
+        A dictionary with keys = 'numeric','categorical' 
 	and values = a list of columns that fall into
 	each respective category.
     cat_trans -- list
@@ -43,8 +43,7 @@ def transform_columns(X_train, X_test,  column_dict, cat_trans = "onehot_encodin
     
     for key in column_dict.keys():
         assert key in ['numeric', 'categorical'], "column_dict keys can be only 'numeric' and 'categorical'"
-    
-    
+     
     # assertions for transformation inputs
     assert isinstance(num_trans, str), "num_trans should be a string"
     assert isinstance(cat_trans, str), "cat_trans should be a string"
@@ -69,37 +68,42 @@ def transform_columns(X_train, X_test,  column_dict, cat_trans = "onehot_encodin
             preprocessor = ColumnTransformer(transformers= [
                     ("stand_scaler", StandardScaler(), numeric),
                     ("ohe", OneHotEncoder(drop="first"), categorical)], sparse_threshold =0)
+            #print(1)
 
             
-        elif num_trans == "minmax_scaling":
+        if num_trans == "minmax_scaling":
             preprocessor = ColumnTransformer(transformers= [
                     ("minmax_scaler", MinMaxScaler(), numeric),
                     ("ohe", OneHotEncoder(drop="first"), categorical)], sparse_threshold =0)
+            #print(2)
         
         # ## Applying transformations to training data set
         X_train = pd.DataFrame(preprocessor.fit_transform(X_train), 
                                    index = X_train.index,
                                    columns = numeric +list(
                                            preprocessor.named_transformers_['ohe'].get_feature_names(numeric)))
+        
             
         #applying transformations to test set
         X_test = pd.DataFrame(preprocessor.transform(X_test),
                               index = X_test.index,
                               columns= X_train.columns)
          
-    elif cat_trans == "label_encoding":
+    if cat_trans == "label_encoding":
         
         if num_trans == "standard_scaling":
             
             preprocessor = ColumnTransformer(transformers= [
                     ("stand_scaler", StandardScaler(), numeric),
                     ("ordinal", OrdinalEncoder(), categorical)], sparse_threshold =0)
+            #print(3)
 
             
-        elif num_trans == "minmax_scaling":
+        if num_trans == "minmax_scaling":
             preprocessor = ColumnTransformer(transformers= [
                     ("minmax_scaler", MinMaxScaler(), numeric),
                     ("ordinal", OrdinalEncoder(), categorical)], sparse_threshold =0)
+            #print(4)
         
         # ## Applying transformations to training data set
         X_train = pd.DataFrame(preprocessor.fit_transform(X_train), 
@@ -115,18 +119,3 @@ def transform_columns(X_train, X_test,  column_dict, cat_trans = "onehot_encodin
                         'X_test' : X_test}
     
     return transformed_dict
-
-
-# test dataset will remove this soon
-    
-
-
-        
-    
-        
-    
-      
-    
-    
-
-    
