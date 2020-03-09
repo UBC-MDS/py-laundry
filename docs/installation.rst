@@ -8,13 +8,13 @@ Installation
 Stable release
 --------------
 
-To install py-laundry, run this command in your terminal:
+To install pylaundry, run this command in your terminal:
 
 .. code-block:: console
 
-    $ pip install -i https://test.pypi.org/simple/ py-laundry
+    $ pip install -i https://test.pypi.org/simple/ pylaundry
 
-This is the preferred method to install py-laundry, as it will always install the most recent stable release.
+This is the preferred method to install pylaundry, as it will always install the most recent stable release.
 
 If you don't have `pip`_ installed, this `Python installation guide`_ can guide
 you through the process.
@@ -26,19 +26,19 @@ you through the process.
 From sources
 ------------
 
-The sources for py-laundry can be downloaded from the `Github repo`_.
+The sources for pylaundry can be downloaded from the `Github repo`_.
 
 You can either clone the public repository:
 
 .. code-block:: console
 
-    $ git clone git://github.com/UBC-MDS/py-laundry
+    $ git clone git://github.com/UBC-MDS/pylaundry
 
 Or download the `tarball`_:
 
 .. code-block:: console
 
-    $ curl  -OL https://github.com/UBC-MDS/py-laundry/tarball/master
+    $ curl  -OL https://github.com/UBC-MDS/pylaundry/tarball/master
 
 Once you have a copy of the source, you can install it with:
 
@@ -47,5 +47,5 @@ Once you have a copy of the source, you can install it with:
     $ python setup.py install
 
 
-.. _Github repo: https://github.com/UBC-MDS/py-laundry
-.. _tarball: https://github.com/UBC-MDS/py-laundry/tarball/master
+.. _Github repo: https://github.com/UBC-MDS/pylaundry
+.. _tarball: https://github.com/UBC-MDS/pylaundry/tarball/master

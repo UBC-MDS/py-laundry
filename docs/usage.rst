@@ -2,6 +2,6 @@
 Usage
 =====
 
-To use py-laundry in a project::
+To use pylaundry in a project::
 
-    from py-laundry import py-laundry
+    from pylaundry import pylaundry
