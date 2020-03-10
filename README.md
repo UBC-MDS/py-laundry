@@ -2,9 +2,9 @@
 ## Summary
 The `pylaundry` package performs many standard preprocessing techniques for Pandas dataframes,  before use in statistical analysis and machine learning. The package functionality includes categorizing column types, handling missing data and imputation, transforming/standardizing columns and feature selection. The `pylaundry` package aims to remove much of the grunt work in the typical data science workflow, allowing the analyst maximum time and energy to devote to modelling!
 
-![](https://github.com/UBC-MDS/py-laundry/workflows/build/badge.svg) [![codecov](https://codecov.io/gh/UBC-MDS/py-laundry/branch/master/graph/badge.svg)](https://codecov.io/gh/UBC-MDS/py-laundry) ![Release](https://github.com/UBC-MDS/py-laundry/workflows/Release/badge.svg)
+![](https://github.com/UBC-MDS/pylaundry/workflows/build/badge.svg) [![codecov](https://codecov.io/gh/UBC-MDS/pylaundry/branch/master/graph/badge.svg)](https://codecov.io/gh/UBC-MDS/pylaundry) ![Release](https://github.com/UBC-MDS/pylaundry/workflows/Release/badge.svg)
 
-[![Documentation Status](https://readthedocs.org/projects/py-laundry/badge/?version=latest)](https://py-laundry.readthedocs.io/en/latest/?badge=latest)
+[![Documentation Status](https://readthedocs.org/projects/pylaundry/badge/?version=latest)](https://pylaundry.readthedocs.io/en/latest/?badge=latest)
 
 ## Installation:
 ```
