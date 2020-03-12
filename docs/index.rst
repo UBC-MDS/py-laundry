@@ -1,4 +1,4 @@
-Welcome to py-laundry's documentation!
+Welcome to pylaundry's documentation!
 ======================================
 
 .. toctree::
