@@ -8,8 +8,7 @@ from pylaundry.select_features import select_features
 import pandas as pd
 import numpy as np
 
-
-# dataset for testing integration 
+# dataset for testing integration
 X_train = pd.DataFrame({
     'cat_column1': [1, 1, 1, 2, 2],
     'cat_column2': [3, 3, 2, 1, 1],
@@ -24,23 +23,47 @@ X_test = pd.DataFrame({
     'num_column2': [0.001, 0, 0.3]
 })
 
-y_train = np.array([3, 5,7,6,9])
+y_train = np.array([3, 5, 7, 6, 9])
 
-# performing entire package workflow
-# first function - categorize
-col_dict = categorize(df = X_train)
 
-# second function - fill_missing
-clean_data = fill_missing(X_train, X_test,
-                          col_dict,
-                          num_imp = "mean", cat_imp = "mode")
+def run_pylaundry():
+    """
+    Runs all modules of pylaundry
+    Arguments
+    --------
+    NA
+    Returns
+    ------
+    features_selected = list of final features selected
+    """
+    col_dict = categorize(df=X_train)
+    # second function - fill_missing
+    clean_data = fill_missing(X_train, X_test,
+                              col_dict,
+                              num_imp="mean", cat_imp="mode")
+    # third function - transform_columns
+    transformed_data = transform_columns(clean_data['X_train'],
+                                         clean_data['X_test'],
+                                         col_dict)
+    # fourth function - feature selection
+    features_selected = select_features(transformed_data['X_train'],
+                                        y_train, n_features=2)
+    return features_selected
 
-# third function - transform_columns
-transformed_data = transform_columns(clean_data['X_train'], 
-                                     clean_data['X_test'],
-                                     col_dict)
 
-# fourth function - feature selection
-features_selected = select_features(transformed_data['X_train'],
-                                    y_train, n_features =2)
+features_selected = run_pylaundry()
+# test case for overall functioning
 
+
+def test_pylaundry():
+    """
+    tests final output of the package after all steps
+    Arguments
+    ---------
+    NA
+    """
+    assert len(features_selected) == 2, "number of output " \
+                                        "features selected must be two"
+    assert features_selected[0] == 'num_column1',\
+        "Column 1 is most important feature to be selected"
+    assert type(features_selected) == list, "Final lectures should be a list"
