@@ -10,6 +10,7 @@ repository = "https://github.com/UBC-MDS/pylaundry"
 documentation = 'https://pylaundry.readthedocs.io'
 
 
+
 [tool.poetry.dependencies]
 python = "^3.7"
 
