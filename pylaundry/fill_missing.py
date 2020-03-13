@@ -16,14 +16,14 @@ def fill_missing(X_train, X_test, column_dict, num_imp, cat_imp):
         A dictionary with keys = 'numeric','categorical',
         and values = a list of columns that fall into
         each respective category.
-    num_imp -- string(default -"mean")
+    num_imp: string(default="mean")
         imputation method for numeric features, options are "mean", "median"
-    cat_imp -- list
+    cat_imp: list
         imputation method for categorical features, options are "mode"
 
     Returns
     -------
-    dictionary
+    dict
         A dictionary with keys "X_train" and "X_test",
         and the modified dataframes as values.
     """

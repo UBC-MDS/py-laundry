@@ -1,15 +1,20 @@
 [tool.poetry]
 name = "pylaundry"
-version = "0.1.0"
+version = "1.0.0"
 description = "Python package for basic preprocessing of dataframes used in machine learning and statistical analysis."
 authors = ["Your Name <you@example.com>"]
 license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/UBC-MDS/pylaundry"
+repository = "https://github.com/UBC-MDS/pylaundry"
+documentation = 'https://pylaundry.readthedocs.io'
 
 [tool.poetry.dependencies]
 python = "^3.7"
 
 pandas = "^1.0"
 sklearn = "^0.0.0"
+python-semantic-release = "^4.10.0"
 
 [tool.poetry.dev-dependencies]
 pytest-cov = "^2.8.1"
@@ -18,9 +23,10 @@ codecov = "^2.0.16"
 flake8 = "^3.7.9"
 sphinx = "^2.4.4"
 sphinxcontrib-napoleon = "^0.7"
+python-semantic-release = "^4.10"
 
 [tool.semantic_release]
-version_variable = "<package_name>/__init__.py:__version__"
+version_variable = "pylaundry/__init__.py:__version__"
 version_source = "commit"
 upload_to_pypi = "false"
 patch_without_tag = "true"
