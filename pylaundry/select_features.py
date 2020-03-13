@@ -37,26 +37,23 @@ def select_features(df, y, mode="regression", n_features=2):
 
     """
 
-    if not isinstance(df, pd.DataFrame):
-        raise WrongDataType("Input Data is not dataframe")
+    assert isinstance(df, pd.DataFrame), "Input \
+    Data is not dataframe"
 
-    elif np.array([object()]).dtype in list(df.dtypes):
-        raise WrongData("String Column Present in the data. Apply transform c"
-                        "olumn function to fix")
+    assert np.array([object()]).dtype not in list(df.dtypes), "String \
+    Column Present in the data. Apply transform column function to fix"
+
+    col = df.columns
+
+    if mode == "regression":
+        lr = LinearRegression()
+        rfe = RFE(estimator=lr, n_features_to_select=n_features)
+        rfe.fit(df, y)
 
     else:
-
-        col = df.columns
-
-        if mode == "regression":
-            lr = LinearRegression()
-            rfe = RFE(estimator=lr, n_features_to_select=n_features)
-            rfe.fit(df, y)
-
-        else:
-            lg = LogisticRegression()
-            rfe = RFE(estimator=lg, n_features_to_select=n_features)
-            rfe.fit(df, y)
+        lg = LogisticRegression()
+        rfe = RFE(estimator=lg, n_features_to_select=n_features)
+        rfe.fit(df, y)
 
     li = []
     if len(np.argwhere(rfe.support_ > 0)) == 1:
