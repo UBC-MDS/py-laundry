@@ -13,21 +13,22 @@ def transform_columns(X_train, X_test, column_dict,
 
     Arguments
     ---------
-    X_train -- pandas.core.frame.DataFrame
+    X_train: pandas.core.frame.DataFrame
         A pandas dataframe for training set
-    X_test -- pandas.core.frame.DataFrame
+    X_test: pandas.core.frame.DataFrame
         A pandas dataframe for test set
     column_dict: dictionary
         A dictionary with keys = 'numeric','categorical' and
         values = a list of columns that fall into each respective category.
-    cat_trans -- list
+    cat_trans: list
         transformation method for categorical features(default - 'ohe')
-    num_trans -- list
+    num_trans: list
         transformation method for numerical features
         (default - 'StandardScaler')
+
     Returns
     -------
-    transformed_dict -- dictionary
+    dict
         A python dictionary with transformed training and
         test set with keys X_train and X_test respectively
     """

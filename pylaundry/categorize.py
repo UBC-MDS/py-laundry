@@ -20,9 +20,9 @@ def categorize(df, max_cat=10):
 
     Arguments
     ----------
-    df --  pandas.core.frame.DataFrame
+    df: pandas.core.frame.DataFrame
         A pandas dataframe
-    max_cat -- int, default 10
+    max_cat: int (default 10)
         A positive integer denoting the maximum number of distinct values that
         a column can have for it to be marked 'categorical'.  The default
         value is 10. Any column with less than or equal to max_cat unique
@@ -30,22 +30,14 @@ def categorize(df, max_cat=10):
 
     Returns
     -------
-    column_dict -- dict
+    dict
         A dictionary with keys = 'numeric','categorical'
         and values = a list of columns that fall into
         each respective category
 
     Examples
     --------
-    >>>> from pylaundry import pylaundry
-    >>>> days = ['Monday','Tuesday','Wednesday']
-    >>>> temps = [2.4,3.2,5.5]
-    >>>> descriptions = ['Mostly sunny with passing clouds',
-    >>>>                'Cloudy with scattered showers',
-    >>>>                'Sunny but very windy']
-    >>>> df = pd.DataFrame({'day':days, 'temp':temps, 'weather': descriptions})
-    >>>> categorize(df)
-    {'numeric':['temp'], 'categorical':['days']}
+    categorize(pd.DataFrame({'numeric':[1,2,3,4], 'cat':['a','b','c']}))
     """
     # Check for invalid parameters
     assert isinstance(df, pd.DataFrame), "df must be a Pandas DataFrame. \
