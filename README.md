@@ -38,7 +38,7 @@ pip install -i https://test.pypi.org/simple/ pylaundry
 
 ## Documentation
 
-View the [official documentation](https://readthedocs.org/projects/pylaundry/badge/?version=latest), hosted on `Read the Docs`. 
+View the [official documentation](https://pylaundry.readthedocs.io/en/latest/?badge=latest), hosted on `Read the Docs`. 
   
 ## Use Case and Examples
 
