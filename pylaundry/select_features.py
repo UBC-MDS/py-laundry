@@ -13,25 +13,27 @@ class WrongDataType(Exception):
 
 
 def select_features(df, y, mode="regression", n_features=2):
-
     """
-    Select Important Features from the input data
+    Select Important Features from the input data using
+    linear regression for mode = "regression" and
+    logistic regression if mode is any other string.
 
     Arguments
     ---------
-    df -- dataframe
+    df: pandas.core.frame.DataFrame
         pandas
-    y -- numpy.ndarray
+    y: numpy.ndarray
         The y part of the data set
-    n_features -- int
-    Keyword arguments
-    -----------------
-    mode -- str
+    n_features: int
+        The number of features to return
+    mode: str
         The mode for calculation (default = 'regression')
 
     Returns
     -------
-    features -- list
+    list
+        A list of column names of length n_features
+        selected via feature selection
 
     """
 
