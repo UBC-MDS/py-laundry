@@ -104,6 +104,10 @@ def test_categorize_bad_input(generate_data):
         categorize(generate_data, max_cat=-1)
     except AssertionError:
         pass
+    try:
+        categorize(pd.DataFrame(([1,2,3,4])))
+    except AssertionError:
+        pass
 
 
 def test_categorize_no_cat(generate_data_no_cat):
