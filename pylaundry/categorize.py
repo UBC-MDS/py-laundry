@@ -46,6 +46,8 @@ def categorize(df, max_cat=10):
         Please see documentation."
     assert max_cat > 0, "max_cat must be a positive integer. \
         Please see documentation."
+    assert not isinstance(df.columns, pd.RangeIndex), "Dataframe columns \
+        must be named"
 
     # Identify categorical columns
     # Remove columns with dtype 'float' from contention
