@@ -105,7 +105,7 @@ def test_categorize_bad_input(generate_data):
     except AssertionError:
         pass
     try:
-        categorize(pd.DataFrame(([1,2,3,4])))
+        categorize(pd.DataFrame(([1, 2, 3, 4])))
     except AssertionError:
         pass
 
