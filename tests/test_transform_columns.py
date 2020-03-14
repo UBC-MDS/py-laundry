@@ -64,7 +64,12 @@ def test_wrong_train_test_set():
     except AssertionError:
         pass
 
-    # Test cases for bad column_dict inputs
+    try:
+        transform_columns(column_dict=column_dict,
+                          X_train=pd.DataFrame(([1, 2, 3, 4])),
+                          X_test=pd.DataFrame(([1, 2, 3, 4])))
+    except AssertionError:
+        pass
 
 
 def test_wrong_column_dict():

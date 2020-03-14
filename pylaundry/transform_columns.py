@@ -38,6 +38,10 @@ def transform_columns(X_train, X_test, column_dict,
     # assertions for test and train set inputs
     assert isinstance(X_train, pd.DataFrame), "X_train should be a DataFrame"
     assert isinstance(X_test, pd.DataFrame), "X_test should be a DataFrame"
+    assert not isinstance(X_train.columns, pd.RangeIndex), \
+        "column names must be strings"
+    assert not isinstance(X_test.columns, pd.RangeIndex), \
+        "column names must be strings"
 
     # assertions for dictionary input
     assert isinstance(column_dict, dict),\
