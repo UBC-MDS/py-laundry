@@ -40,6 +40,9 @@ def select_features(df, y, mode="regression", n_features=2):
     assert isinstance(df, pd.DataFrame), "Input \
     Data is not dataframe"
 
+    assert not isinstance(df.columns, pd.RangeIndex), "Input \
+    Data is without column names"
+
     assert np.array([object()]).dtype not in list(df.dtypes), "String \
     Column Present in the data. Apply transform column function to fix"
 
