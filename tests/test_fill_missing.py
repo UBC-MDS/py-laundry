@@ -244,6 +244,26 @@ def test_diff_columns():
 
 """
 Testing for errors thrown with bad inputs
+Columns which were not named
+"""
+
+
+def test_no_name_columns():
+    try:
+        fill_missing(X_train=pd.DataFrame([1.5, 2.5, 3.5, None, 4.5]),
+                     X_test=pd.DataFrame([1, None, 3, 1, 3]),
+                     # insert column which is not in the df
+                     column_dict={'numeric': ['num2'],
+                                  'categorical': ['cat1']},
+                     num_imp="median",
+                     cat_imp="mean")
+
+    except AssertionError:
+        pass
+
+
+"""
+Testing for errors thrown with bad inputs
 Column names which are not in the DF's
 """
 
