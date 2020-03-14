@@ -1,9 +1,15 @@
 [tool.poetry]
 name = "pylaundry"
-version = "1.0.0"
+version = "1.0.4"
 description = "Python package for basic preprocessing of dataframes used in machine learning and statistical analysis."
 authors = ["Your Name <you@example.com>"]
 license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/UBC-MDS/pylaundry"
+repository = "https://github.com/UBC-MDS/pylaundry"
+documentation = 'https://pylaundry.readthedocs.io'
+
+
 
 [tool.poetry.dependencies]
 python = "^3.7"
