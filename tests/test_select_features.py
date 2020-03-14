@@ -204,7 +204,7 @@ def test_dataframe(generate_wrong_data):
 def test_input(generate_wrong_data_one):
 
     """
-    The function tess if the input data type is correct or not 
+    The function tess if the input data type is correct or not.
     Examples
     --------
     >>> test_input(generate_wrong_data_one)
