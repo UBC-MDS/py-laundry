@@ -44,6 +44,12 @@ def fill_missing(X_train, X_test, column_dict, num_imp, cat_imp):
         assert key == 'numeric' or key == 'categorical', \
             "column_dict keys can be only 'numeric' and 'categorical'"
 
+    # Check all the columns in df are named
+    assert not isinstance(X_train.columns, pd.RangeIndex), \
+        "column names must be strings"
+    assert not isinstance(X_test.columns, pd.RangeIndex), \
+        "column names must be strings"
+
     # Check all the columns listed in dictionary are in the df
     for keys, values in column_dict.items():
         for column in values:
@@ -59,7 +65,7 @@ def fill_missing(X_train, X_test, column_dict, num_imp, cat_imp):
 
     # Check all columns contain numeric columns
     types = X_train.values.flatten().dtype
-    assert types == 'float64' or types == 'int32' or types == 'int64',\
+    assert types == 'float64' or types == 'int32' or types == 'int64', \
         "column values must be all numeric, \
         must encode categorical variables as integers"
 
