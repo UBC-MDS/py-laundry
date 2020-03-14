@@ -216,3 +216,21 @@ def test_input(generate_wrong_data_one):
 
     except AssertionError:
         pass
+
+
+def test_columns():
+
+    """
+    The function tess if the input data has columns or not.
+    Examples
+    --------
+    >>> test_input(generate_wrong_data_one)
+    """
+
+    df = pd.DataFrame(([1, 'x']))
+    y = np.array([1, 2, 3])
+    try:
+        select_features.select_features(df, y, n_features=1)
+
+    except AssertionError:
+        pass
