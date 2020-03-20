@@ -80,14 +80,13 @@ def transform_columns(X_train, X_test, column_dict,
         if num_trans == "standard_scaling":
             preprocessor = ColumnTransformer(transformers=[
                 ("stand_scaler", StandardScaler(), numeric),
-                ("ohe", OneHotEncoder(drop="first"), categorical)],
+                ("ohe", OneHotEncoder(drop='first'), categorical)],
                 sparse_threshold=0)
-            # print(1)
 
         if num_trans == "minmax_scaling":
             preprocessor = ColumnTransformer(transformers=[
                 ("minmax_scaler", MinMaxScaler(), numeric),
-                ("ohe", OneHotEncoder(drop="first"), categorical)],
+                ("ohe", OneHotEncoder(drop='first'), categorical)],
                 sparse_threshold=0)
             # print(2)
 
@@ -96,7 +95,7 @@ def transform_columns(X_train, X_test, column_dict,
                                index=X_train.index,
                                columns=numeric + list(
             preprocessor.named_transformers_['ohe'].get_feature_names(
-                                       numeric)))
+                                       categorical)))
 
         # applying transformations to test set
         X_test = pd.DataFrame(preprocessor.transform(X_test),
