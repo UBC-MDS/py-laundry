@@ -1,6 +1,6 @@
 
 ## Summary
-The `pylaundry` package performs many standard preprocessing techniques for Pandas dataframes,  before use in statistical analysis and machine learning. The package functionality includes categorizing column types, handling missing data and imputation, transforming/standardizing columns and feature selection. The `pylaundry` package aims to remove much of the grunt work in the typical data science workflow, allowing the analyst maximum time and energy to devote to modelling!
+The `pylaundry` package performs many standard preprocessing techniques for Pandas dataframes, before use in statistical analysis and machine learning. The package functionality includes categorizing column types, handling missing data and imputation, transforming/standardizing columns and feature selection. The `pylaundry` package aims to remove much of the grunt work in the typical data science workflow, allowing the analyst maximum time and energy to devote to modelling!
 
 ![](https://github.com/UBC-MDS/pylaundry/workflows/build/badge.svg) [![codecov](https://codecov.io/gh/UBC-MDS/pylaundry/branch/master/graph/badge.svg)](https://codecov.io/gh/UBC-MDS/pylaundry) ![Release](https://github.com/UBC-MDS/pylaundry/workflows/Release/badge.svg)
 
@@ -23,18 +23,18 @@ pip install -i https://test.pypi.org/simple/ pylaundry
 - `feature_selector`: This function takes in a feature dataframe, an array of targets, a mode (Regression or Classification), and a maximum number of features to select. The function returns the most important features to predict the target as a list.
 
 ### pylaundry in the Python ecosystem
+- [pandas.DataFrame.dtypes] returns a Pandas series with the datatype of each column, similar to our `Categorize` function, which returns a dictionary. 
 - [sklearn.Pipeline](https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html) offers similar functionality for the fill_missing and transform_columns functions, where similar functions can be wrapped in a Pipeline and carried out sequentially.
-
 - There are many feature selection packages and functions, for instance [sklearn.feature_selection](https://scikit-learn.org/stable/modules/feature_selection.html), which carry out similar functionality to our `feature_selector` function
 
-- As far as we know, there are no similar packages for Categorizing Columns. `pyLaundry` is the first package we are aware of to abstract away the full dataframe pre-processing workflow with a unified and simple API.
+- The added advantage of `pyLaundry` is being the first package we are aware to abstract away the full dataframe pre-processing workflow with a unified and simple API.
 
 ## Dependencies
 
 - Python 3.7.3 and Python packages:
   - pandas==0.24.2  
   - numpy==1.16.4  
-  - sklearn==0.22   
+  - scikit-learn==0.22   
 
 ## Documentation
 
@@ -94,19 +94,20 @@ df_test = pd.DataFrame({'a':[6, np.NaN, 0],
                            'b':[0.5, 9.2, np.NaN]})
 
 fill_missing(df_train, df_test, {'numeric':['b'], 'categorical':['a']}, 
-             num_imp = 'median')
->>>      a    b    
-    0    1  1.2    
-    1    2  3.4    
-    2    4  3.0    
-    3    4  4.9    
-    4    4  3.2   
+             num_imp = 'median', cat_imp = 'mode')
+>>>      
+{'X_train':              a    b    
+                    0    1  1.2    
+                    1    2  3.4    
+                    2    4  3.0    
+                    3    4  4.9    
+                    4    4  3.2   
 
-
-         a    b    
-    0    6  0.5    
-    1    4  9.2    
-    2    0  3.2    
+'X_test':
+                         a    b    
+                    0    6  0.5    
+                    1    4  9.2    
+                    2    0  3.2  }
 ```
 
 #### transform_columns()
@@ -126,14 +127,17 @@ df_test = pd.DataFrame({'a':[6, 2],
                             'c':['B', 'B']})
 
 transform_columns(df_train, df_test, {'numeric':['a', 'b'], 'categorical':['c']})
->>>      a      b     c_B  c_C
-    0  -1.2  -1.39      0    0
-    1   0.0   0.91      1    0
-    2   1.2   0.49      0    1
+>>> 
+{'X_train':  
+          a      b     c_B  c_C
+    0  -1.22  -1.39      0    0
+    1   0.0    0.91      1    0
+    2   1.22   0.49      0    1
 
+'X_test':
          a      b     c_B  c_C
-    0   4.9   -2.1      1    0
-    1   1.2   6.96      1    0
+    0   4.9   -2.13     1    0
+    1   1.2    6.96     1    0 }
 ```
 
 #### select_features()
