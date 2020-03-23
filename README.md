@@ -52,16 +52,16 @@ Use Case:
 
 ```
 from pylaundry.categorize import categorize
-import pandas
+import pandas as pd
 
-df = pandas.DataFrame({'a':[1, 2, 3, 4, 5, 1, 2, 3, 4, 5],
-                       'b':[1.2, 3.4, 3.0, 4.9, 5.3, 6.1, 8.8, 9.4, 10.4, 1.2],
+df = pd.DataFrame({'a':[1, 2, 3, 4, 5, 1, 2, 3, 4, 5],
+                       'b':[1.2, 3.4, 3.0, 4.9, 5.3, 6.1, 8.8, 9.4, 10.4, 3.5],
                        'c':['A','B','C','D','E','F','G','H','I','J']})
 
 # categorize with default max_cat (10)
 categorize(df)
 >>> {'numeric':['b'], 
-   'categorical':['a','b']}
+   'categorical':['a','c']}
 
 # categorize with max_cat = 5 (column c is neither numeric or categorical 
 # under this restriction)
@@ -71,8 +71,8 @@ categorize(df, max_cat = 5)
 
 # Explicitly setting dtype to category will override max_cat settings 
 # for a column
-df = df.astype({'b':'category'})
-categorize(df, max_cat = 5)
+df2 = df.astype({'b':'category'})
+categorize(df2, max_cat = 5)
 >>> {'numeric':[],
      'categorical':['a', 'b']}
 ```
@@ -84,13 +84,13 @@ categorize(df, max_cat = 5)
 
 ```
 from pylaundry.fill_missing import fill_missing
-import pandas
+import pandas as pd
 import numpy as np
 
-df_train = pandas.DataFrame({'a':[1, 2, np.NaN, 4, 4],
+df_train = pd.DataFrame({'a':[1, 2, np.NaN, 4, 4],
                              'b':[1.2, 3.4, 3.0, 4.9, np.NaN]})
 
-df_test = pandas.DataFrame({'a':[6, np.NaN, 0],
+df_test = pd.DataFrame({'a':[6, np.NaN, 0],
                            'b':[0.5, 9.2, np.NaN]})
 
 fill_missing(df_train, df_test, {'numeric':['b'], 'categorical':['a']}, 
@@ -103,10 +103,10 @@ fill_missing(df_train, df_test, {'numeric':['b'], 'categorical':['a']},
     4    4  3.2   
 
 
-         a    b    c
-    0    6  0.5    B
-    1    4  9.2    B
-    2    0  3.2    C
+         a    b    
+    0    6  0.5    
+    1    4  9.2    
+    2    0  3.2    
 ```
 
 #### transform_columns()
@@ -115,25 +115,25 @@ fill_missing(df_train, df_test, {'numeric':['b'], 'categorical':['a']},
 
 ```
 from pylaundry.transform_columns import transform_columns
-import pandas
+import pandas as pd
 
-df_train = pandas.DataFrame({'a':[1, 2, 3],
+df_train = pd.DataFrame({'a':[1, 2, 3],
                              'b':[1.2, 3.4, 3.0],
                              'c':['A','B','C']})
 
-df_test = pandas.DataFrame({'a':[6, 2],
+df_test = pd.DataFrame({'a':[6, 2],
                             'b':[0.5, 9.2],
                             'c':['B', 'B']})
 
 transform_columns(df_train, df_test, {'numeric':['a', 'b'], 'categorical':['c']})
->>>      a      b     A  B  C
-    0  -1.2  -1.39    1  0  0
-    1   0.0   0.91    0  1  0
-    2   1.2   0.49    0  0  1
+>>>      a      b     c_B  c_C
+    0  -1.2  -1.39      0    0
+    1   0.0   0.91      1    0
+    2   1.2   0.49      0    1
 
-         a    b    A  B  C
-    0  4.9  -2.1   0  1  0
-    1  1.2  6.96   0  1  0
+         a      b     c_B  c_C
+    0   4.9   -2.1      1    0
+    1   1.2   6.96      1    0
 ```
 
 #### select_features()
@@ -142,16 +142,14 @@ transform_columns(df_train, df_test, {'numeric':['a', 'b'], 'categorical':['c']}
 
 ```
 from pylaundry.select_features import select_features
-import pandas
+import pandas as pd
+import numpy as np
 
-df = pandas.DataFrame({'a':[1, 2, 3],
+df = pd.DataFrame({'a':[1, 2, 3],
                        'b':[1.2, 2.2, 3.2],
                        'c':[8, 12, -5]})
 
 target = np.array([1, 2, 3])
-
-
-
 
 select_features(df, target, mode = 'regression', n_features = 2)
 >>>  ['a', 'b']
@@ -164,24 +162,24 @@ from pylaundry.categorize import categorize
 from pylaundry.fill_missing import fill_missing
 from pylaundry.transform_columns import transform_columns
 from pylaundry.select_features import select_features
-import pandas
+import pandas as pd
 import numpy as np
 
-X_train = pandas.DataFrame({'a':[1, 2, NaN, 4, 5, 1, 2, 3, 4, 5],
+X_train = pd.DataFrame({'a':[1, 2, np.NaN, 4, 5, 1, 2, 3, 4, 5],
                        'b':[1.2, 3.4, 3.0, 4.9, 5.3, 6.1, 8.8, 9.4, np.NaN, 1.2],
-                       'c':['A','B','C','D','E','F','B','H','I','NaN']})
+                       'c':[1, 1, 1, 3, 1, 1, 2, 3, 3, 2]})
 
-X_test = pandas.DataFrame({'a':[6, np.NaN, 0],
+X_test = pd.DataFrame({'a':[6, np.NaN, 0],
                        'b':[0.5, 9.2, np.NaN],
-                       'c':[NaN, 'B', 'D']})
+                       'c':[3, np.NaN, 2]})
 
-y_train = numpy.array([1, 2, 3, 4, 5, 6, 2, 3, 4, 5])
+y_train = np.array([1, 2, 3, 4, 5, 6, 2, 3, 4, 5])
 
 # Categorize columns
 col_dict = categorize(X_train)
 
 # Fill missing values
-filled_dict = fill_missing(X_train, X_test, col_dict)
+filled_dict = fill_missing(X_train, X_test, col_dict, 'mean', 'mode')
 X_train_filled, X_test_filled = filled_dict['X_train'], filled_dict['X_test']
 
 # Transform data
