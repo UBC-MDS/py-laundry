@@ -26,6 +26,15 @@ def fill_missing(X_train, X_test, column_dict, num_imp, cat_imp):
     dict
         A dictionary with keys "X_train" and "X_test",
         and the modified dataframes as values.
+
+    Examples
+    --------
+    df_train = pd.DataFrame({'a':[1, 2, np.NaN, 4, 4],
+                             'b':[1.2, 3.4, 3.0, 4.9, np.NaN]})
+    df_test = pd.DataFrame({'a':[6, np.NaN, 0],
+                           'b':[0.5, 9.2, np.NaN]})
+    fill_missing(df_train, df_test, {'numeric':['b'], 'categorical':['a']}, 
+             num_imp = 'median')
     """
 
     # Check input types are as specified
@@ -78,7 +87,6 @@ def fill_missing(X_train, X_test, column_dict, num_imp, cat_imp):
             col_imp = X_train[column].median()
 
         # Get index of NaN values in train columns
-        # Todo: If these are empty (no Nan) is that fine
         index_train = X_train[column].index[X_train[column].apply(np.isnan)]
         index_test = X_test[column].index[X_test[column].apply(np.isnan)]
 
