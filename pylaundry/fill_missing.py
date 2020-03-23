@@ -33,8 +33,8 @@ def fill_missing(X_train, X_test, column_dict, num_imp, cat_imp):
                              'b':[1.2, 3.4, 3.0, 4.9, np.NaN]})
     df_test = pd.DataFrame({'a':[6, np.NaN, 0],
                            'b':[0.5, 9.2, np.NaN]})
-    fill_missing(df_train, df_test, {'numeric':['b'], 'categorical':['a']}, 
-             num_imp = 'median')
+    fill_missing(df_train, df_test, {'numeric':['b'], 'categorical':['a']},
+        num_imp = 'median')
     """
 
     # Check input types are as specified
