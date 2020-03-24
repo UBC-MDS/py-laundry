@@ -31,7 +31,6 @@ def transform_columns(X_train, X_test, column_dict,
     dict
         A python dictionary with transformed training and
         test set with keys X_train and X_test respectively
-    
     Examples
     --------
     df_train = pd.DataFrame({'a':[1, 2, 3],
