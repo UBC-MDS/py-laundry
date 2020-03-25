@@ -4,11 +4,11 @@ import numpy as np
 import pandas as pd
 
 
-class WrongData(Exception):
+class _WrongData(Exception):
     pass
 
 
-class WrongDataType(Exception):
+class _WrongDataType(Exception):
     pass
 
 
