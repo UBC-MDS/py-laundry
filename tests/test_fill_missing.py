@@ -111,6 +111,33 @@ def test_mode_cat():
     assert test_output["cat1"][1] == 1, \
         "Imputed mode value should be 1 in test set"
 
+"""
+Testing that function handles categorical
+columns encoded with characters
+"""
+def test_non_numeric_columns():
+        
+    output = fill_missing(X_train=pd.DataFrame({
+            'cat1': ['a', 'b', None, 'c', 'a'],
+            'num1': [1.5, 2.5, 3.5, None, 4.5]
+                        }),
+                          X_test = pd.DataFrame({
+            'cat1': ['a', 'b', None],
+            'num1': [1.5, None, 3.5],                          
+                        }),
+                          column_dict = col_dict,
+                          num_imp = "mean",
+                          cat_imp = "mode")
+    train_output = output['X_train']
+    test_output = output['X_test']
+    
+    # Mode of column 1 is 3 for imputed value
+    # Check for same imputation train and test
+    assert train_output["cat1"][2] == 'a', \
+        "Imputed mode value should be 'a' in train set"
+    assert test_output["cat1"][2] == 'a', \
+        "Imputed mode value should be 'a' in test set"
+
 
 """
 Testing for errors thrown with bad inputs
@@ -307,24 +334,3 @@ def test_bad_dict_keys():
     except AssertionError:
         pass
 
-
-"""
-Testing for errors thrown with bad inputs
-Columns which contain non-numeric values
-"""
-
-
-def test_non_numeric_columns():
-    try:
-        fill_missing(X_train=pd.DataFrame({
-            'cat1': ['a', 'b', None, 'c', 'a'],
-            'num1': [1.5, 2.5, 3.5, None, 4.5]
-        }),
-            X_test=X_test,
-            column_dict={'numeric': ['num1'],
-                         'categorical': ['cat1']},
-            num_imp="median",
-            cat_imp="mean")
-
-    except AssertionError:
-        pass
