@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pylaundry"
-version = "1.0.13"
+version = "1.0.14"
 description = "Python package for basic preprocessing of dataframes used in machine learning and statistical analysis."
 authors = ["Your Name <you@example.com>"]
 license = "MIT"
