@@ -8,7 +8,7 @@ The `pylaundry` package performs many standard preprocessing techniques for Pand
 
 ## Installation:
 ```
-pip install -i https://test.pypi.org/simple/ pylaundry
+pip install pylaundry --extra-index-url=https://test.pypi.org/simple/
 ```
 
 ## Features
