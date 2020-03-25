@@ -111,26 +111,28 @@ def test_mode_cat():
     assert test_output["cat1"][1] == 1, \
         "Imputed mode value should be 1 in test set"
 
+
 """
 Testing that function handles categorical
 columns encoded with characters
 """
+
+
 def test_non_numeric_columns():
-        
     output = fill_missing(X_train=pd.DataFrame({
-            'cat1': ['a', 'b', None, 'c', 'a'],
-            'num1': [1.5, 2.5, 3.5, None, 4.5]
-                        }),
-                          X_test = pd.DataFrame({
+        'cat1': ['a', 'b', None, 'c', 'a'],
+        'num1': [1.5, 2.5, 3.5, None, 4.5]
+    }),
+        X_test=pd.DataFrame({
             'cat1': ['a', 'b', None],
-            'num1': [1.5, None, 3.5],                          
-                        }),
-                          column_dict = col_dict,
-                          num_imp = "mean",
-                          cat_imp = "mode")
+            'num1': [1.5, None, 3.5],
+        }),
+        column_dict=col_dict,
+        num_imp="mean",
+        cat_imp="mode")
     train_output = output['X_train']
     test_output = output['X_test']
-    
+
     # Mode of column 1 is 3 for imputed value
     # Check for same imputation train and test
     assert train_output["cat1"][2] == 'a', \
@@ -333,4 +335,3 @@ def test_bad_dict_keys():
 
     except AssertionError:
         pass
-
