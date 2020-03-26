@@ -34,7 +34,8 @@ pip install -i https://test.pypi.org/simple/ pylaundry
 - Python 3.7.3 and Python packages:
   - pandas==0.24.2  
   - numpy==1.16.4  
-  - scikit-learn==0.22   
+  - scikit-learn==0.22.2
+  - python-semantic-release==4.10.0
 
 ## Documentation
 
