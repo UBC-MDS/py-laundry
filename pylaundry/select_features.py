@@ -35,6 +35,12 @@ def select_features(df, y, mode="regression", n_features=2):
         A list of column names of length n_features
         selected via feature selection
 
+    Examples
+    --------
+    >>>df = pd.DataFrame({'x1':[1,2,3,4], 'x2':['6','6','7','8']})
+    >>>y = np.array([4,43,5])
+    >>>select_features(df, y, model="regression", n_features = 1)
+
     """
 
     assert isinstance(df, pd.DataFrame), "Input \
