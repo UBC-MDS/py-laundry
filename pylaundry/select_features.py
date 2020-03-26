@@ -25,7 +25,8 @@ def select_features(df, y, mode="regression", n_features=2):
     y: numpy.ndarray
         The y part of the data set
     n_features: int
-        The number of features to return
+        The number of features to return should be less
+        than number of columns in df
     mode: str
         The mode for calculation (default = 'regression')
 
