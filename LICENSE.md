@@ -1,4 +1,4 @@
-laundRy: A preprocessing package for machine learning.  
+pylaundry: A preprocessing package for machine learning.  
         Copyright (C) 2020  Cari Gostic, Aman Kumar Garg, Alexander Hinton, Arun Marria
 
         This program is free software: you can redistribute it and/or modify
